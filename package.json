@@ -1,0 +1,43 @@
+{
+	"name": "orange-project-init",
+	"version": "0.1.0",
+	"description": "CLI to scaffold projects with Vue/Astro/React frontend and Koa/Go backend templates",
+	"type": "module",
+	"bin": {
+		"orange-project-init": "./dist/index.js"
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch",
+		"prepublishOnly": "npm run build"
+	},
+	"keywords": [
+		"cli",
+		"scaffold",
+		"template",
+		"vue",
+		"react",
+		"astro",
+		"koa",
+		"go"
+	],
+	"author": "aDarkMaker",
+	"license": "MIT",
+	"engines": {
+		"node": ">=18"
+	},
+	"dependencies": {
+		"@clack/prompts": "^1.7.0",
+		"cac": "^7.0.0",
+		"degit": "^3.6.5",
+		"kolorist": "^1.8.0"
+	},
+	"devDependencies": {
+		"@types/node": "^26.1.2",
+		"tsup": "^8.5.1",
+		"typescript": "^7.0.2"
+	}
+}
