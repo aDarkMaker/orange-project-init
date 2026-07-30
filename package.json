@@ -4,7 +4,7 @@
 	"description": "CLI to scaffold projects with Vue/Astro/React frontend and Koa/Go backend templates",
 	"type": "module",
 	"bin": {
-		"orange-project-init": "./dist/index.js"
+		"orange-project-init": "dist/index.js"
 	},
 	"files": [
 		"dist"
