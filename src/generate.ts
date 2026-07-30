@@ -5,7 +5,7 @@ import * as p from '@clack/prompts';
 import degit from 'degit';
 import { green } from 'kolorist';
 import type { ProjectAnswers } from './utils';
-import { detectPackageManager, getDevCommand, getInstallCommand } from './utils';
+import { getDevCommand, getInstallCommand } from './utils';
 import { generatePrettierConfig } from './configs/prettier';
 import { generateCspellConfig } from './configs/cspell';
 import { generateESLintConfig, getESLintDependencies } from './configs/eslint';
@@ -20,7 +20,7 @@ const TEMPLATE_REPOS: Record<string, string> = {
 };
 
 export async function generate(answers: ProjectAnswers): Promise<void> {
-	const { projectName, projectType, frontendFramework, backendFramework, addons, gitInit } = answers;
+	const { projectName, projectType, frontendFramework, backendFramework, addons, gitInit, packageManager } = answers;
 	const targetDir = join(process.cwd(), projectName);
 
 	if (existsSync(targetDir)) {
@@ -107,9 +107,8 @@ export async function generate(answers: ProjectAnswers): Promise<void> {
 	}
 
 	// Done
-	const pm = detectPackageManager();
-	const installCmd = getInstallCommand(pm);
-	const devCmd = getDevCommand(pm);
+	const installCmd = getInstallCommand(packageManager);
+	const devCmd = getDevCommand(packageManager);
 
 	p.outro(`✨ Project ${green(projectName)} created successfully!
 

@@ -7,6 +7,7 @@ export interface ProjectAnswers {
 	backendFramework?: 'koa' | 'go';
 	addons: string[];
 	gitInit: boolean;
+	packageManager: string;
 }
 
 export function handleCancel(error: unknown): never {

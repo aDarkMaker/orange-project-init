@@ -1,5 +1,6 @@
 import * as p from '@clack/prompts';
 import type { ProjectAnswers } from './utils';
+import { detectPackageManager } from './utils';
 
 export async function runPrompts(defaultName?: string): Promise<ProjectAnswers> {
 	p.intro('🍊 orange-project-init');
@@ -96,6 +97,22 @@ export async function runPrompts(defaultName?: string): Promise<ProjectAnswers> 
 		process.exit(0);
 	}
 
+	const packageManager = await p.select({
+		message: 'Package manager:',
+		options: [
+			{ value: 'npm', label: 'npm' },
+			{ value: 'pnpm', label: 'pnpm' },
+			{ value: 'bun', label: 'bun' },
+			{ value: 'yarn', label: 'yarn' },
+		],
+		initialValue: detectPackageManager(),
+	});
+
+	if (p.isCancel(packageManager)) {
+		p.cancel('Operation cancelled');
+		process.exit(0);
+	}
+
 	return {
 		projectName: projectName as string,
 		projectType: projectType as ProjectAnswers['projectType'],
@@ -103,5 +120,6 @@ export async function runPrompts(defaultName?: string): Promise<ProjectAnswers> 
 		backendFramework,
 		addons: addons as string[],
 		gitInit: gitInit as boolean,
+		packageManager: packageManager as string,
 	};
 }
