@@ -22,6 +22,8 @@ pnpm create orange-project-init
 bun create orange-project-init
 # or
 yarn create orange-project-init
+# or
+npx orange-project-init
 ```
 
 Or with a project name directly:
@@ -106,6 +108,29 @@ Generates `.prettierrc.cjs` with opinionated defaults:
 
 ### cspell
 Generates `cspell.json` for spell checking with customizable dictionary.
+
+### Package Structure
+
+This project maintains two npm packages:
+
+| Package | Purpose |
+|---------|---------|
+| `orange-project-init` | Main package for `npx` usage |
+| `create-orange-project-init` | Alias for `npm/pnpm/yarn/bun create` commands |
+
+Both packages share the same source code. When updating, publish both:
+
+```bash
+# Update main package
+cd orange-project-init
+npm version patch
+npm publish
+
+# Update alias package
+cd ../create-orange-project-init
+npm version patch
+npm publish
+```
 
 ## Development
 
